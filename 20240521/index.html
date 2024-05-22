@@ -1,11 +1,59 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>爱心词云</title>
-        <script src="https://cdn.jsdelivr.net/npm/wordcloud2/dist/wordcloud2.js"></script>
-    </head>
-    <body>
-        <div id="wordcloud" style="width: 600px; height: 400px;"></div>
-        <script src="lovecloud.js"></script>
-    </body>
+<html lang="zn">
+  <head>
+    <title>To Dear.LuTingTing 20240521</title><head>
+    <meta charset="UTF-8">
+    <!-- 适应手机浏览器屏幕 -->
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <script src="https://cdn.jsdelivr.net/npm/js2wordcloud@1.1.12/dist/js2wordcloud.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/pure-snow.js@2.1.0/pure-snow.min.js"></script>
+
+    <style>
+      .snowflake {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        background: white;
+        border-radius: 50%;
+        filter: drop-shadow(0 0 10px white);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div style="position: relative;; width: 100vw; height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+      <div id="snow" data-count="500" style="background-color: black;width: 100%; height: 100%;"></div>
+      <div style="position: absolute; width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+        <div id="container" style="width: 1000px; height: 800px;"></div>
+        <div style="color: #ff41d3; font-size: 26px;">
+          To Dear.LuTingTing
+        </div>
+      </div>
+    </div>
+    <script>
+      var praiseStr = "赛过西施、貌若天仙、一顾倾城、才智国人、出水芙蓉、阿娇金屋、闭月羞花、逞娇呈美、涎玉沫珠、鱼沉雁落、瘗玉埋香、朱唇皓齿、章台杨柳、金屋娇娘、金屋贮娇、姱容修态、离魂倩女、曲眉丰颊、水木清华、爽心悦目、天生丽质、皓齿明眸、花颜月貌、绝色佳人"
+      var praiseList = praiseStr.split('、')
+      var wc = new Js2WordCloud(document.getElementById('container'))
+      wc.setOption({
+        list: [
+          // ...new Array(100).fill(0).map((a, i) => ['陆婷婷', Math.floor(Math.random() * 8 + 20)]),
+          ['陆婷婷521快乐', 80],
+          ...praiseList.reduce((prev, item) => prev.concat(new Array(10).fill().map(() => ([item, Math.floor(Math.random() * 12 + 10)]))), []),
+        ],
+        color: '#ff7be0',
+        backgroundColor: 'transparent',
+        imageShape: 'https://raw.githubusercontent.com/caodonghai/lutingting/main/assets/img/hert.png',     // 提供一张图片，根据其形状进行词云渲染，默认为null
+        fontSizeFactor: 0.5,      // 当词云值相差太大，可设置此值进字体行大小微调，默认0.1
+        maxFontSize: 80,          // 最大fontSize，用来控制weightFactor，默认60
+        minFontSize: 8,          // 最小fontSize，用来控制weightFactor，默认12
+        tooltip: {
+          show: true,             // 默认：false
+          backgroundColor: 'rgba(0, 0, 0, 0.701961)',         // 默认：'rgba(0, 0, 0, 0.701961)'
+          formatter: function (item) {               // 数据格式化函数，item为list的一项
+            return `🥳🎶😍❤️😗💕😙💖😜${item[0]}🥰❤️😘💖😍💕😘🎶😚`
+          }
+        },
+      })
+    </script>
+  </body>
 </html>
